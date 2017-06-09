@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RxGTA">
-      <HintPath>..\..\..\Libraries\RxGTA.dll</HintPath>
-    </Reference>
     <Reference Include="ScriptHookVDotNet">
       <HintPath>..\..\..\Libraries\ScriptHookVDotNet.dll</HintPath>
     </Reference>
@@ -51,12 +48,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Source.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\Coroutine.cs" />
+    <Compile Include="src\CoroutineCore.cs" />
+    <Compile Include="src\Extensions.cs" />
+    <Compile Include="src\ObservableScript.cs" />
+    <Compile Include="src\ScriptScheduler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetPath)" "D:\Steam\steamapps\common\Grand Theft Auto V\scripts"</PostBuildEvent>
