@@ -49,11 +49,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\Coroutine.cs" />
-    <Compile Include="src\CoroutineCore.cs" />
-    <Compile Include="src\Extensions.cs" />
-    <Compile Include="src\ObservableScript.cs" />
-    <Compile Include="src\ScriptScheduler.cs" />
+    <Compile Include="src\Coroutine\Coroutine.cs" />
+    <Compile Include="src\Coroutine\CoroutineCore.cs" />
+    <Compile Include="src\Rx\Extensions.cs" />
+    <Compile Include="src\Rx\ObservableScript.cs" />
+    <Compile Include="src\Rx\ResetAfter.cs" />
+    <Compile Include="src\Rx\ScriptScheduler.cs" />
+    <Compile Include="src\Telekinesis.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
