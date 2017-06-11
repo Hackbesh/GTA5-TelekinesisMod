@@ -19,7 +19,7 @@ namespace TelekinesisMod
 
         public IScheduler Scheduler => scheduler;
 
-        public CoroutineCore Coroutine { get; } = new CoroutineCore();
+        public Coroutine Coroutine { get; } = new Coroutine();
 
         public CompositeDisposable CompositeDisposable { get; } = new CompositeDisposable();
 

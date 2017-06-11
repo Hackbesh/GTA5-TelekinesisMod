@@ -50,7 +50,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Coroutine\Coroutine.cs" />
-    <Compile Include="src\Coroutine\CoroutineCore.cs" />
     <Compile Include="src\Rx\Extensions.cs" />
     <Compile Include="src\Rx\ObservableScript.cs" />
     <Compile Include="src\Rx\ResetAfter.cs" />
