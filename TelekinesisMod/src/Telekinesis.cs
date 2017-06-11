@@ -40,11 +40,7 @@ namespace TelekinesisMod
             TickAsObservable
                 .Select(_ => TargetCandidate.Value)
                 .Where(t => t != null && !hasTarget)
-                .Subscribe(_ =>
-                {
-                    var pos = TargetCandidate.Value.Position + new Vector3(0, 0, 2);
-                    World.DrawMarker(MarkerType.CheckeredFlagCircle, pos, Vector3.Zero, Vector3.Zero, new Vector3(1, 1, 1), System.Drawing.Color.Red);
-                })
+                .Subscribe(t => DrawAlign(t))
                 .AddTo(this);
         }
 
@@ -65,6 +61,13 @@ namespace TelekinesisMod
             }
 
             return null;
+        }
+
+        //  照準を描画する
+        private void DrawAlign(Entity entity)
+        {
+            var pos = entity.Position + new Vector3(0, 0, entity.Model.GetDimensions().Z);
+            World.DrawMarker(MarkerType.CheckeredFlagCircle, pos, Vector3.Zero, Vector3.Zero, new Vector3(1, 1, 1), System.Drawing.Color.Red);
         }
 
         //  Pedをラグドール化する
