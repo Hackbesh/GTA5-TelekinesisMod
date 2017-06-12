@@ -19,6 +19,8 @@ namespace TelekinesisMod
 
         public Telekinesis()
         {
+            //  Entity::Exists()のチェックなどをするようにする!
+
             TargetCandidate =
                 TickAsObservable
                 .Where(_ => !hasTarget)
@@ -34,13 +36,13 @@ namespace TelekinesisMod
                 .Where(_ => !hasTarget && Game.IsControlJustPressed(0, Control.Aim))
                 .Select(_ => TargetCandidate.Value)
                 .Where(t => t != null)
-                .Subscribe(t => Coroutine.Start(MainCoroutine(t)))
+                .Subscribe(t => Coroutine.Start(MyCoroutine(t)))
                 .AddTo(this);
 
             TickAsObservable
                 .Select(_ => TargetCandidate.Value)
                 .Where(t => t != null && !hasTarget)
-                .Subscribe(t => DrawAlign(t))
+                .Subscribe(t => DrawTargetMarker(t))
                 .AddTo(this);
         }
 
@@ -63,11 +65,11 @@ namespace TelekinesisMod
             return null;
         }
 
-        //  照準を描画する
-        private void DrawAlign(Entity entity)
+        //  ターゲット候補のマーカを描画する
+        private void DrawTargetMarker(Entity entity)
         {
             var pos = entity.Position + new Vector3(0, 0, entity.Model.GetDimensions().Z);
-            World.DrawMarker(MarkerType.CheckeredFlagCircle, pos, Vector3.Zero, Vector3.Zero, new Vector3(1, 1, 1), System.Drawing.Color.Red);
+            World.DrawMarker(MarkerType.CheckeredFlagCircle, pos, GameplayCamera.Direction, Vector3.Zero, new Vector3(1, 1, 1), System.Drawing.Color.Red);
         }
 
         //  Pedをラグドール化する
@@ -76,7 +78,7 @@ namespace TelekinesisMod
             Function.Call(Hash.SET_PED_TO_RAGDOLL, new InputArgument[] { ped, 0, 0, 0, true, true, true });
         }
 
-        private IEnumerable<object> MainCoroutine(Entity target)
+        private IEnumerable<object> MyCoroutine(Entity target)
         {
             hasTarget = true;
 
