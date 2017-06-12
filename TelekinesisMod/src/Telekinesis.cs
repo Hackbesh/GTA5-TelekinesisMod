@@ -124,7 +124,7 @@ namespace TelekinesisMod
             //  爆発させて捨てる
             var distance = Game.Player.Character.Position.DistanceTo(target.Position);
             var type = distance > 15 ? ExplosionType.GasTank : ExplosionType.Bullet;
-            World.AddExplosion(target.Position, ExplosionType.GasTank, 1.0f, 0.0f);
+            World.AddExplosion(target.Position, type, 1.0f, 0.0f);
             hasTarget = false;
             yield break;
         }
