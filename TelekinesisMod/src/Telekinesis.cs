@@ -31,7 +31,7 @@ namespace TelekinesisMod
                 .AddTo(this);
 
             TickAsObservable
-                .Where(_ => !hasTarget && Game.IsControlJustPressed(0, Control.Attack))
+                .Where(_ => !hasTarget && Game.IsControlJustPressed(0, Control.Aim))
                 .Select(_ => TargetCandidate.Value)
                 .Where(t => t != null)
                 .Subscribe(t => Coroutine.Start(MainCoroutine(t)))
@@ -49,10 +49,10 @@ namespace TelekinesisMod
         {
             var entity = World.RaycastCapsule(GameplayCamera.Position, GameplayCamera.Direction, MaxDistance, RaycastRadius, IntersectOptions.Everything, Game.Player.Character).HitEntity;
 
-            if (entity != null && entity.IsAlive)
+            if (entity != null)
             {
                 if (entity is Vehicle) return entity;
-                if (entity is Ped ped)
+                if (entity is Ped ped && ped.IsAlive)
                 {
                     if (ped.CurrentVehicle != null)
                         return ped.CurrentVehicle;
