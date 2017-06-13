@@ -1,3 +1,34 @@
+# EN
+# TelekinesisMod
+
+## About This MOD
+You can lift Vehicle and NPC with Super Power and throw them in the direction you like.
+
+## How To Use
+When the player has no weapons,
+Markers are displayed on targets that cross the player's eyes.
+When the marker is displayed, you can lift the target by pressing the "Aim" key.
+By lifting the target and pressing the "attack" key you can throw away the target.
+
+## Requirements
+ScriptHookV by Alexander Blade
+ScriptHookVDotNet by crosire
+
+## Installation
+1:Install the latest version of ScriptHookV and ScriptHookVDotNet
+2:Create a folder called "scripts" in the main folder where GTA is installed (if not already there)
+3:Place TelekinesisMod.dll and UniRx.dll inside the folder 
+
+## Library Used
+[UniRx](https://github.com/neuecc/UniRx) by neuecc
+
+## Credits
+Code - Aridai
+translation　-Hackbesh 
+Special Thanks - Yoshifumi Kawai(neuecc)
+
+
+# JP
 # テレキネシスMod
 
 ## なにこれ?
