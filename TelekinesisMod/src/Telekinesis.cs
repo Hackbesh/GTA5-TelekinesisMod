@@ -19,8 +19,6 @@ namespace TelekinesisMod
 
         public Telekinesis()
         {
-            //  Entity::Exists()のチェックなどをするようにする!
-
             TargetCandidate =
                 TickAsObservable
                 .Where(_ => !hasTarget)
@@ -41,7 +39,7 @@ namespace TelekinesisMod
 
             TickAsObservable
                 .Select(_ => TargetCandidate.Value)
-                .Where(t => t != null && !hasTarget)
+                .Where(t => t != null && t.Exists() && !hasTarget)
                 .Subscribe(t => DrawTargetMarker(t))
                 .AddTo(this);
         }
@@ -51,7 +49,7 @@ namespace TelekinesisMod
         {
             var entity = World.RaycastCapsule(GameplayCamera.Position, GameplayCamera.Direction, MaxDistance, RaycastRadius, IntersectOptions.Everything, Game.Player.Character).HitEntity;
 
-            if (entity != null)
+            if (entity != null&& entity.Exists())
             {
                 if (entity is Vehicle) return entity;
                 if (entity is Ped ped && ped.IsAlive)
@@ -89,6 +87,12 @@ namespace TelekinesisMod
 
             while (true)
             {
+                if (!target.Exists())
+                {
+                    hasTarget = false;
+                    yield break;
+                }
+
                 //  プレーヤーが発砲したら抜ける
                 if (Game.IsControlJustPressed(0, Control.Attack)) break;
 
@@ -116,6 +120,12 @@ namespace TelekinesisMod
             //  銃の発射された方向へ飛んでいく
             for (int i = 0; i < 120; i++)
             {
+                if (!target.Exists())
+                {
+                    hasTarget = false;
+                    yield break;
+                }
+
                 //  何かと衝突したら抜ける
                 if (target.HasCollidedWithAnything) break;
 
