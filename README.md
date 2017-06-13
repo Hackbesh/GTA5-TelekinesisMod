@@ -1,4 +1,4 @@
-# EN
+## EN
 # TelekinesisMod
 
 ## About This MOD
@@ -28,7 +28,7 @@ translation　-Hackbesh
 Special Thanks - Yoshifumi Kawai(neuecc)
 
 
-# JP
+## JP
 # テレキネシスMod
 
 ## なにこれ?
